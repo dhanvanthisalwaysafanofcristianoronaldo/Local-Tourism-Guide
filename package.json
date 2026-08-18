@@ -1,0 +1,12 @@
+{
+  "name": "local-tourism-guide",
+  "version": "1.0.0",
+  "description": "Responsive Local Tourism Guide with HTML5, CSS3, JavaScript and Node.js backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

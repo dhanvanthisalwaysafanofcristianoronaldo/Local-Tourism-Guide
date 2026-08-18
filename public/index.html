@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Tamil Nadu | Local Tourism Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="home">
+  <div class="header-inner">
+    <div>
+      <h1>🌴 Explore Tamil Nadu</h1>
+      <p>Local Tourism Guide</p>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<nav id="mainNav">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#adventure">Adventure</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <span class="badge">LOCAL TOURISM • TAMIL NADU</span>
+    <h2>Discover Beautiful Places Around You</h2>
+    <p>Plan your next journey with our local tourism guide.</p>
+    <a class="hero-btn" href="#destinations">Explore Destinations ↓</a>
+  </div>
+</section>
+
+<main class="container">
+  <aside class="sidebar">
+    <h3>Tourism Categories</h3>
+    <ul>
+      <li><a href="#destinations">🏖️ Beaches</a></li>
+      <li><a href="#destinations">🏔️ Hill Stations</a></li>
+      <li><a href="#destinations">🛕 Temples</a></li>
+      <li><a href="#destinations">🌳 Wildlife</a></li>
+      <li><a href="#adventure">🚣 Adventure</a></li>
+      <li><a href="#gallery">📸 Photography Spots</a></li>
+    </ul>
+  </aside>
+
+  <section class="content">
+    <section id="destinations">
+      <h2>Popular Destinations</h2>
+      <p class="section-intro">Experience the rich culture, scenic beauty and adventure destinations across Tamil Nadu.</p>
+      <div class="cards" id="destinationCards">
+        <p class="loading">Loading destinations...</p>
+      </div>
+    </section>
+
+    <section id="adventure" class="info-section">
+      <h2>🚣 Adventure Experiences</h2>
+      <div class="info-grid">
+        <div><h3>🌊 Water Adventures</h3><p>Discover coastal activities and scenic waterside locations.</p></div>
+        <div><h3>🥾 Trekking</h3><p>Explore hill trails, viewpoints and nature-filled routes.</p></div>
+        <div><h3>📷 Photography</h3><p>Find landscapes, architecture and cultural locations worth capturing.</p></div>
+      </div>
+    </section>
+
+    <section id="gallery" class="info-section">
+      <h2>📸 Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=80" alt="Travel landscape">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80" alt="Mountain landscape">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=80" alt="Mountain scenery">
+      </div>
+    </section>
+
+    <section id="contact" class="info-section contact-section">
+      <h2>📩 Contact the Guide</h2>
+      <form id="contactForm">
+        <div class="form-row">
+          <input id="contactName" type="text" placeholder="Your name" required>
+          <input id="contactEmail" type="email" placeholder="Email address" required>
+        </div>
+        <textarea id="contactMessage" rows="5" placeholder="Ask about a destination..." required></textarea>
+        <button type="submit">Send Message</button>
+        <p id="contactStatus" class="status"></p>
+      </form>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <h3>HTML5 & CSS3 Laboratory</h3>
+  <p>Local Tourism Guide | Front-End + Back-End</p>
+  <p>© 2026 Explore Tamil Nadu</p>
+</footer>
+
+<div class="modal hidden" id="destinationModal">
+  <div class="modal-box">
+    <button class="close-btn" id="closeModal" aria-label="Close">×</button>
+    <img id="modalImage" src="" alt="">
+    <div class="modal-body">
+      <span id="modalCategory" class="badge"></span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <p><strong>Best for:</strong> <span id="modalBestFor"></span></p>
+      <button id="planTripBtn">Plan a Trip</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
