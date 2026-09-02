@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WanderTamil - Local Tourism Guide</title>
+
+
+    <style>
+
+        /* =====================================================
+           GENERAL PAGE STYLING
+           ===================================================== */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f8f7;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #176b87, #64ccc5);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        section {
+            width: 85%;
+            margin: 30px auto;
+        }
+
+        h2 {
+            color: #176b87;
+            border-bottom: 2px solid #64ccc5;
+            padding-bottom: 8px;
+        }
+
+
+        /* =====================================================
+           1. ROUNDED CORNERS
+           ===================================================== */
+
+        .rounded-box {
+
+            width: 80%;
+
+            padding: 25px;
+
+            margin: 15px 0;
+
+            background-color: #d9f3f0;
+
+            border: 3px solid #176b87;
+
+            /*
+               Different radius for each corner:
+               Top-left     = 15px
+               Top-right    = 50px
+               Bottom-right = 30px
+               Bottom-left  = 5px
+            */
+
+            border-radius: 15px 50px 30px 5px;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           2. BORDER IMAGE
+           ===================================================== */
+
+        .border-img-box {
+
+            width: 80%;
+
+            padding: 25px;
+
+            margin: 15px 0;
+
+            border: 20px solid transparent;
+
+            /*
+               Border image
+            */
+
+            border-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect x='5' y='5' width='50' height='50' fill='none' stroke='%23176b87' stroke-width='8' stroke-dasharray='10 5'/%3E%3C/svg%3E")
+                20 round;
+
+            background-color: white;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           3. MULTIPLE BACKGROUNDS
+           ===================================================== */
+
+        #tourism-banner {
+
+            width: 100%;
+
+            height: 250px;
+
+            margin: 15px 0;
+
+            border: 2px solid #176b87;
+
+            /*
+               Two background layers
+            */
+
+            background-image:
+
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(255,255,255,0.8) 0 40px,
+                    transparent 41px
+                ),
+
+                linear-gradient(
+                    to bottom,
+                    #87ceeb 0%,
+                    #87ceeb 55%,
+                    #76b852 56%,
+                    #3f9142 100%
+                );
+
+            background-position:
+
+                center,
+                center;
+
+            background-repeat:
+
+                no-repeat,
+                no-repeat;
+
+            position: relative;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        #tourism-banner::after {
+
+            content: "Explore Tamil Nadu • Discover • Experience";
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 0;
+
+            right: 0;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            text-shadow: 2px 2px 4px #333;
+        }
+
+
+        /* =====================================================
+           4. BACKGROUND SIZE
+           ===================================================== */
+
+        #tourist-map {
+
+            width: 100%;
+
+            height: 180px;
+
+            margin: 15px 0;
+
+            border: 2px solid #176b87;
+
+            /*
+               Background size controls the
+               size of each background layer.
+            */
+
+            background-image:
+
+                linear-gradient(
+                    45deg,
+                    transparent 45%,
+                    #64ccc5 46%,
+                    #64ccc5 54%,
+                    transparent 55%
+                ),
+
+                linear-gradient(
+                    -45deg,
+                    transparent 45%,
+                    #64ccc5 46%,
+                    #64ccc5 54%,
+                    transparent 55%
+                );
+
+            background-size:
+
+                80px 80px,
+                80px 80px;
+
+            background-repeat:
+
+                repeat,
+                repeat;
+
+            background-color: #e9f7f5;
+
+            border-radius: 15px;
+        }
+
+
+        #tourist-map::before {
+
+            content: "WANDERTAMIL TOURISM MAP";
+
+            display: block;
+
+            text-align: center;
+
+            padding-top: 70px;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #176b87;
+        }
+
+
+        /* =====================================================
+           5. PSEUDO CLASSES ON FORM INPUTS
+           ===================================================== */
+
+        .tour-form {
+
+            background-color: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 10px rgba(0,0,0,0.1);
+        }
+
+
+        .tour-form label {
+
+            display: block;
+
+            margin-top: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .tour-form input,
+        .tour-form select {
+
+            width: 90%;
+
+            padding: 12px;
+
+            margin-top: 5px;
+
+            border: 2px solid #aaa;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+        }
+
+
+        /* :focus */
+
+        .tour-form input:focus,
+        .tour-form select:focus {
+
+            border: 3px solid #176b87;
+
+            background-color: #e9fff9;
+
+            outline: none;
+        }
+
+
+        /* :required */
+
+        .tour-form input:required {
+
+            border: 3px solid #176b87;
+
+            background-color: #fffde7;
+        }
+
+
+        /* :invalid */
+
+        .tour-form input[type="email"]:invalid {
+
+            color: red;
+        }
+
+
+        /* :valid */
+
+        .tour-form input[type="email"]:valid {
+
+            color: green;
+        }
+
+
+        .tour-form button {
+
+            margin-top: 20px;
+
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background-color: #176b87;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+
+        .tour-form button:hover {
+
+            background-color: #0e4f65;
+        }
+
+
+        /* =====================================================
+           6. ADJACENT SIBLING SELECTOR
+           ===================================================== */
+
+        .places-table {
+
+            border-collapse: collapse;
+
+            width: 100%;
+
+            margin: 15px 0;
+        }
+
+
+        .places-table th,
+        .places-table td {
+
+            border: 1px solid #666;
+
+            padding: 12px;
+
+            text-align: center;
+        }
+
+
+        .places-table th {
+
+            background-color: #176b87;
+
+            color: white;
+        }
+
+
+        /*
+           Images are initially faded.
+        */
+
+        .placeImg {
+
+            opacity: 0.2;
+
+            transition: opacity 0.4s ease;
+        }
+
+
+        /*
+           Adjacent sibling selector (+)
+
+           Hovering over the destination name
+           reveals the image.
+        */
+
+        .placeName:hover + .placeImg {
+
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           7. NTH-CHILD(ODD) / NTH-CHILD(EVEN)
+           ===================================================== */
+
+        #touristTable {
+
+            border-collapse: collapse;
+
+            width: 100%;
+        }
+
+
+        #touristTable th,
+        #touristTable td {
+
+            border: 1px solid #777;
+
+            padding: 14px;
+
+            text-align: left;
+        }
+
+
+        #touristTable th {
+
+            background-color: #176b87;
+
+            color: white;
+        }
+
+
+        /*
+           Odd rows
+        */
+
+        #touristTable tr:nth-child(odd) {
+
+            background-color: #f2f2f2;
+        }
+
+
+        /*
+           Even rows
+        */
+
+        #touristTable tr:nth-child(even) {
+
+            background-color: #d9f3f0;
+        }
+
+
+        /*
+           Hover effect
+        */
+
+        #touristTable tr:hover {
+
+            background-color: #ffd966;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+
+            background-color: #176b87;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 40px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <h1>WanderTamil</h1>
+
+        <p>
+            Your Local Tourism Guide to Tamil Nadu
+        </p>
+
+        <p>
+            Discover • Explore • Experience
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         1. ROUNDED CORNERS
+         ===================================================== -->
+
+    <section>
+
+        <h2>1. Rounded Corners</h2>
+
+        <div class="rounded-box">
+
+            <strong>Welcome to WanderTamil!</strong>
+
+            <p>
+                WanderTamil is your local tourism guide
+                for exploring the beautiful destinations
+                of Tamil Nadu.
+            </p>
+
+            <p>
+                Discover scenic locations, historical
+                landmarks, temples, local markets and
+                cultural experiences.
+            </p>
+
+            <p>
+                This box demonstrates the CSS3
+                <b>border-radius</b> property.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         2. BORDER IMAGE
+         ===================================================== -->
+
+    <section>
+
+        <h2>2. Border Image</h2>
+
+        <div class="border-img-box">
+
+            <strong>Explore Tamil Nadu</strong>
+
+            <p>
+                From beautiful hill stations and waterfalls
+                to ancient temples and heritage sites,
+                Tamil Nadu offers many places to explore.
+            </p>
+
+            <p>
+                This section demonstrates the CSS3
+                <b>border-image</b> property.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         3. MULTIPLE BACKGROUNDS
+         ===================================================== -->
+
+    <section>
+
+        <h2>3. Multiple Backgrounds</h2>
+
+        <div id="tourism-banner"></div>
+
+        <p>
+            This tourism banner demonstrates the use of
+            multiple background images using the CSS3
+            <b>background-image</b> property.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         4. BACKGROUND SIZE
+         ===================================================== -->
+
+    <section>
+
+        <h2>4. Background Size</h2>
+
+        <div id="tourist-map"></div>
+
+        <p>
+            The above section demonstrates the CSS3
+            <b>background-size</b> property by controlling
+            the size of the background pattern.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         5. PSEUDO CLASSES
+         ===================================================== -->
+
+    <section>
+
+        <h2>5. Pseudo Classes on Form Inputs</h2>
+
+        <div class="tour-form">
+
+            <form>
+
+                <label for="name">
+                    Tourist Name (Required):
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label for="email">
+                    Email:
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="tourist@example.com"
+                >
+
+
+                <label for="destination">
+                    Preferred Destination:
+                </label>
+
+                <select
+                    id="destination"
+                    name="destination"
+                    required
+                >
+
+                    <option value="">
+                        Select a destination
+                    </option>
+
+                    <option value="ooty">
+                        Ooty
+                    </option>
+
+                    <option value="kodaikanal">
+                        Kodaikanal
+                    </option>
+
+                    <option value="coimbatore">
+                        Coimbatore
+                    </option>
+
+                    <option value="madurai">
+                        Madurai
+                    </option>
+
+                    <option value="thanjavur">
+                        Thanjavur
+                    </option>
+
+                    <option value="rameswaram">
+                        Rameswaram
+                    </option>
+
+                </select>
+
+
+                <br>
+
+                <button type="submit">
+                    Plan My Visit
+                </button>
+
+            </form>
+
+        </div>
+
+        <p>
+            Enter an invalid and valid email address to
+            observe the <b>:invalid</b> and <b>:valid</b>
+            pseudo-classes.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         6. ADJACENT SIBLING SELECTOR
+         ===================================================== -->
+
+    <section>
+
+        <h2>6. Adjacent Sibling Selector (Hover)</h2>
+
+        <p>
+            Hover over a destination name to reveal
+            its tourism image.
+        </p>
+
+
+        <table class="places-table">
+
+            <tr>
+
+                <th>
+                    Destination
+                </th>
+
+                <th>
+                    Tourism Image
+                </th>
+
+            </tr>
+
+
+            <tr>
+
+                <td class="placeName">
+                    Ooty
+                </td>
+
+                <td class="placeImg">
+
+                    <div style="
+                        width:120px;
+                        height:80px;
+                        margin:auto;
+                        background:linear-gradient(
+                            135deg,
+                            #76b852,
+                            #4e79a7
+                        );
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:white;
+                        font-weight:bold;
+                    ">
+
+                        OOTY
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td class="placeName">
+                    Kodaikanal
+                </td>
+
+                <td class="placeImg">
+
+                    <div style="
+                        width:120px;
+                        height:80px;
+                        margin:auto;
+                        background:linear-gradient(
+                            135deg,
+                            #64ccc5,
+                            #176b87
+                        );
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:white;
+                        font-weight:bold;
+                    ">
+
+                        KODAIKANAL
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td class="placeName">
+                    Madurai
+                </td>
+
+                <td class="placeImg">
+
+                    <div style="
+                        width:120px;
+                        height:80px;
+                        margin:auto;
+                        background:linear-gradient(
+                            135deg,
+                            #d4a373,
+                            #8b5e3c
+                        );
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:white;
+                        font-weight:bold;
+                    ">
+
+                        MADURAI
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+
+        </table>
+
+    </section>
+
+
+    <!-- =====================================================
+         7. NTH-CHILD
+         ===================================================== -->
+
+    <section>
+
+        <h2>7. nth-child(odd) / nth-child(even)</h2>
+
+
+        <table id="touristTable">
+
+            <tr>
+
+                <th>
+                    Tourist Place
+                </th>
+
+                <th>
+                    Category
+                </th>
+
+                <th>
+                    Recommended Activity
+                </th>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Ooty
+                </td>
+
+                <td>
+                    Hill Station
+                </td>
+
+                <td>
+                    Sightseeing
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Kodaikanal
+                </td>
+
+                <td>
+                    Hill Station
+                </td>
+
+                <td>
+                    Nature Walk
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Madurai
+                </td>
+
+                <td>
+                    Heritage
+                </td>
+
+                <td>
+                    Temple Visit
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Thanjavur
+                </td>
+
+                <td>
+                    Historical
+                </td>
+
+                <td>
+                    Heritage Tour
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Rameswaram
+                </td>
+
+                <td>
+                    Spiritual
+                </td>
+
+                <td>
+                    Temple Visit
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Coimbatore
+                </td>
+
+                <td>
+                    City Tourism
+                </td>
+
+                <td>
+                    Local Exploration
+                </td>
+
+            </tr>
+
+
+        </table>
+
+
+        <p>
+
+            The table uses
+            <b>:nth-child(odd)</b> and
+            <b>:nth-child(even)</b> to create
+            alternating row colors.
+
+            Hover over a row to see the
+            hover effect.
+
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 WanderTamil
+        </p>
+
+        <p>
+            Explore Tamil Nadu • Travel Local •
+            Create Memories
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
