@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>WanderTamil - Local Tourism Guide</title>
+
+
+    <style>
+
+        /* =====================================================
+           GENERAL PAGE STYLING
+           ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f8f7;
+            color: #333;
+        }
+
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #176b87,
+                #64ccc5
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+
+            font-size: 42px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+           ===================================================== */
+
+        nav {
+            background-color: #0e4f65;
+
+            text-align: center;
+
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+
+            text-decoration: none;
+
+            margin: 0 15px;
+
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd966;
+        }
+
+
+        /* =====================================================
+           SECTIONS
+           ===================================================== */
+
+        section {
+            width: 85%;
+
+            margin: 30px auto;
+
+            background-color: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #176b87;
+
+            border-bottom: 2px solid #64ccc5;
+
+            padding-bottom: 8px;
+        }
+
+
+        /* =====================================================
+           COMMON INPUT STYLING
+           ===================================================== */
+
+        input,
+        select {
+
+            padding: 10px;
+
+            border: 2px solid #aaa;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            margin: 5px;
+        }
+
+        button {
+
+            padding: 10px 20px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background-color: #176b87;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            margin: 8px;
+        }
+
+        button:hover {
+
+            background-color: #0e4f65;
+        }
+
+
+        .result {
+
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background-color: #e9f7f5;
+
+            border-left: 5px solid #176b87;
+
+            border-radius: 5px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           1. SHORTEST AND LONGEST TOURISM WORD
+           ===================================================== */
+
+        #wordResult {
+
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background-color: #d9f3f0;
+
+            border-radius: 10px;
+        }
+
+
+        /* =====================================================
+           2. TRAVEL BUDGET CALCULATOR
+           ===================================================== */
+
+        .calculator {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+
+            max-width: 500px;
+        }
+
+
+        /* =====================================================
+           3. TOURIST DESTINATION GRID
+           ===================================================== */
+
+        #destinationGrid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(150px, 1fr));
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .destination-card {
+
+            height: 130px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #176b87,
+                    #64ccc5
+                );
+
+            box-shadow:
+                0 3px 7px rgba(0,0,0,0.2);
+        }
+
+
+        /* =====================================================
+           4. CURRENCY CONVERTER
+           ===================================================== */
+
+        .converter {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        #currencyResult {
+
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background-color: #e9f7f5;
+
+            border-radius: 10px;
+        }
+
+
+        /* =====================================================
+           5. RANDOM DESTINATION
+           ===================================================== */
+
+        #destinationImage {
+
+            width: 200px;
+
+            height: 120px;
+
+            margin: 15px auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #176b87,
+                    #64ccc5
+                );
+
+            color: white;
+
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+        #flipResult {
+
+            text-align: center;
+
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           6. TOUR PACKAGE ORDER
+           ===================================================== */
+
+        .package-form {
+
+            max-width: 600px;
+        }
+
+        .package-row {
+
+            margin: 12px 0;
+
+        }
+
+        .package-row label {
+
+            display: inline-block;
+
+            width: 220px;
+
+            font-weight: bold;
+        }
+
+        .radio-group label {
+
+            width: auto;
+
+            margin-right: 15px;
+        }
+
+        #packagePrice {
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            background-color: #d9f3f0;
+
+            border-radius: 10px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+
+            background-color: #176b87;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 40px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <h1>WanderTamil</h1>
+
+        <p>
+            Your Local Tourism Guide to Tamil Nadu
+        </p>
+
+        <p>
+            Explore • Discover • Experience
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <nav>
+
+        <a href="#words">Tourism Words</a>
+
+        <a href="#budget">Budget</a>
+
+        <a href="#destinations">Destinations</a>
+
+        <a href="#currency">Currency</a>
+
+        <a href="#random">Random Trip</a>
+
+        <a href="#package">Tour Package</a>
+
+    </nav>
+
+
+    <!-- =====================================================
+         1. SHORTEST AND LONGEST WORD
+         DOM METHODS USED:
+         getElementById()
+         innerHTML
+         ===================================================== -->
+
+    <section id="words">
+
+        <h2>1. Tourism Word Analyzer</h2>
+
+        <p>
+            Enter a sentence about Tamil Nadu tourism.
+            WanderTamil will find the shortest and longest
+            word in the sentence.
+        </p>
+
+        <input
+            type="text"
+            id="tourismString"
+            size="50"
+            placeholder="Example: Explore beautiful Tamil Nadu">
+
+        <br>
+
+        <button id="analyzeButton">
+            Analyze Words
+        </button>
+
+        <div id="wordResult">
+
+            Result will appear here.
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         2. TRAVEL BUDGET CALCULATOR
+         DOM METHODS USED:
+         getElementById()
+         value
+         innerHTML
+         click event
+         ===================================================== -->
+
+    <section id="budget">
+
+        <h2>2. Travel Budget Calculator</h2>
+
+        <p>
+            Enter your estimated travel expenses to
+            calculate your total tourism budget.
+        </p>
+
+
+        <div class="calculator">
+
+            <label>
+                Transport Cost:
+                <input
+                    type="number"
+                    id="transport"
+                    placeholder="₹">
+            </label>
+
+
+            <label>
+                Hotel Cost:
+                <input
+                    type="number"
+                    id="hotel"
+                    placeholder="₹">
+            </label>
+
+
+            <label>
+                Food Cost:
+                <input
+                    type="number"
+                    id="food"
+                    placeholder="₹">
+            </label>
+
+
+            <label>
+                Activities Cost:
+                <input
+                    type="number"
+                    id="activities"
+                    placeholder="₹">
+            </label>
+
+
+            <button id="budgetButton">
+                Calculate Budget
+            </button>
+
+        </div>
+
+
+        <div id="budgetResult"
+             class="result">
+
+            Total budget will appear here.
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         3. TOURIST DESTINATION GRID
+         DOM METHODS USED:
+         createElement()
+         appendChild()
+         innerHTML
+         Math.random()
+         ===================================================== -->
+
+    <section id="destinations">
+
+        <h2>3. Explore Tamil Nadu Destinations</h2>
+
+        <p>
+            Enter the number of rows and columns to
+            generate a random grid of tourist destinations.
+        </p>
+
+
+        <label>
+            Rows:
+
+            <input
+                type="number"
+                id="rows"
+                min="1"
+                max="10"
+                value="2">
+        </label>
+
+
+        <label>
+            Columns:
+
+            <input
+                type="number"
+                id="columns"
+                min="1"
+                max="10"
+                value="3">
+        </label>
+
+
+        <br>
+
+
+        <button id="generateButton">
+            Explore Destinations
+        </button>
+
+
+        <div id="destinationGrid"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         4. CURRENCY CONVERTER
+         DOM METHODS USED:
+         getElementById()
+         selectedIndex
+         value
+         innerHTML
+         ===================================================== -->
+
+    <section id="currency">
+
+        <h2>4. WanderTamil Currency Converter</h2>
+
+        <p>
+            Convert your travel money between Indian Rupees
+            and US Dollars.
+        </p>
+
+
+        <div class="converter">
+
+            <input
+                type="number"
+                id="currencyAmount"
+                placeholder="Enter amount">
+
+
+            <select id="currencyFrom">
+
+                <option value="INR">
+                    Indian Rupee
+                </option>
+
+                <option value="USD">
+                    US Dollar
+                </option>
+
+            </select>
+
+
+            <span>
+                to
+            </span>
+
+
+            <select id="currencyTo">
+
+                <option value="USD">
+                    US Dollar
+                </option>
+
+                <option value="INR">
+                    Indian Rupee
+                </option>
+
+            </select>
+
+
+            <button id="currencyButton">
+                Convert
+            </button>
+
+        </div>
+
+
+        <div id="currencyResult">
+
+            Conversion result will appear here.
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         5. RANDOM DESTINATION
+         DOM METHODS USED:
+         addEventListener()
+         querySelector()
+         Math.random()
+         DOM manipulation
+         ===================================================== -->
+
+    <section id="random">
+
+        <h2>5. Random Tamil Nadu Destination</h2>
+
+        <p>
+            Can't decide where to travel?
+            Let WanderTamil randomly choose a destination
+            for you.
+        </p>
+
+
+        <div id="destinationImage">
+
+            READY?
+
+        </div>
+
+
+        <button id="randomButton">
+            Choose Destination
+        </button>
+
+
+        <p id="flipResult">
+
+            Your destination will appear here.
+
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         6. TOUR PACKAGE ORDER FORM
+         DOM METHODS USED:
+         querySelector()
+         addEventListener()
+         value
+         innerHTML
+         ===================================================== -->
+
+    <section id="package">
+
+        <h2>6. WanderTamil Tour Package</h2>
+
+        <p>
+            Select your preferred tour package and calculate
+            the estimated total cost.
+        </p>
+
+
+        <div class="package-form">
+
+
+            <div class="package-row">
+
+                <label>
+                    Number of Local Trips:
+                </label>
+
+                <input
+                    type="number"
+                    id="smallTrips"
+                    min="0"
+                    value="0">
+
+            </div>
+
+
+            <div class="package-row">
+
+                <label>
+                    Number of Standard Trips:
+                </label>
+
+                <input
+                    type="number"
+                    id="mediumTrips"
+                    min="0"
+                    value="0">
+
+            </div>
+
+
+            <div class="package-row">
+
+                <label>
+                    Number of Premium Trips:
+                </label>
+
+                <input
+                    type="number"
+                    id="largeTrips"
+                    min="0"
+                    value="0">
+
+            </div>
+
+
+            <div class="package-row">
+
+                <label>
+                    Select Guide Type:
+                </label>
+
+
+                <div class="radio-group">
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="10"
+                            name="guide"
+                            checked>
+                        Basic - 10%
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="15"
+                            name="guide">
+                        Standard - 15%
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="20"
+                            name="guide">
+                        Premium - 20%
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <button id="packageButton">
+                Calculate Tour Cost
+            </button>
+
+
+            <div id="packagePrice">
+
+                Total tour cost will appear here.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 WanderTamil
+        </p>
+
+        <p>
+            Explore Tamil Nadu • Travel Local •
+            Create Memories
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           1. TOURISM WORD ANALYZER
+
+           Original experiment concept:
+           Find shortest and longest word in a string.
+
+           DOM concepts:
+           getElementById()
+           value
+           innerHTML
+           addEventListener()
+           split()
+           length
+           ===================================================== */
+
+
+        document
+            .getElementById("analyzeButton")
+            .addEventListener("click", function () {
+
+                var text =
+                    document
+                    .getElementById("tourismString")
+                    .value
+                    .trim();
+
+
+                if (text === "") {
+
+                    document
+                        .getElementById("wordResult")
+                        .innerHTML =
+                        "Please enter a tourism sentence.";
+
+                    return;
+                }
+
+
+                var words =
+                    text.split(/\s+/);
+
+
+                var shortest =
+                    words[0];
+
+                var longest =
+                    words[0];
+
+
+                for (var i = 1;
+                     i < words.length;
+                     i++) {
+
+                    if (
+                        words[i].length <
+                        shortest.length
+                    ) {
+
+                        shortest =
+                            words[i];
+
+                    }
+
+
+                    if (
+                        words[i].length >
+                        longest.length
+                    ) {
+
+                        longest =
+                            words[i];
+
+                    }
+
+                }
+
+
+                document
+                    .getElementById("wordResult")
+                    .innerHTML =
+                    "Shortest Word: <b>" +
+                    shortest +
+                    "</b><br>" +
+                    "Longest Word: <b>" +
+                    longest +
+                    "</b>";
+
+            });
+
+
+
+        /* =====================================================
+           2. TRAVEL BUDGET CALCULATOR
+
+           DOM concepts:
+           getElementById()
+           value
+           parseFloat()
+           innerHTML
+           click event
+           ===================================================== */
+
+
+        document
+            .getElementById("budgetButton")
+            .addEventListener("click", function () {
+
+
+                var transport =
+                    parseFloat(
+                        document
+                        .getElementById("transport")
+                        .value
+                    ) || 0;
+
+
+                var hotel =
+                    parseFloat(
+                        document
+                        .getElementById("hotel")
+                        .value
+                    ) || 0;
+
+
+                var food =
+                    parseFloat(
+                        document
+                        .getElementById("food")
+                        .value
+                    ) || 0;
+
+
+                var activities =
+                    parseFloat(
+                        document
+                        .getElementById("activities")
+                        .value
+                    ) || 0;
+
+
+                var total =
+                    transport +
+                    hotel +
+                    food +
+                    activities;
+
+
+                document
+                    .getElementById("budgetResult")
+                    .innerHTML =
+                    "Estimated Travel Budget: ₹" +
+                    total.toFixed(2);
+
+            });
+
+
+
+        /* =====================================================
+           3. RANDOM DESTINATION GRID
+
+           Original experiment concept:
+           Generate a rectangular grid.
+
+           DOM concepts:
+           createElement()
+           appendChild()
+           innerHTML
+           Math.random()
+           ===================================================== */
+
+
+        document
+            .getElementById("generateButton")
+            .addEventListener("click", function () {
+
+
+                var rows =
+                    parseInt(
+                        document
+                        .getElementById("rows")
+                        .value
+                    );
+
+
+                var columns =
+                    parseInt(
+                        document
+                        .getElementById("columns")
+                        .value
+                    );
+
+
+                var destinations = [
+
+                    "Ooty",
+
+                    "Kodaikanal",
+
+                    "Madurai",
+
+                    "Thanjavur",
+
+                    "Rameswaram",
+
+                    "Mahabalipuram",
+
+                    "Kanyakumari",
+
+                    "Coimbatore",
+
+                    "Yercaud",
+
+                    "Valparai"
+
+                ];
+
+
+                var grid =
+                    document
+                    .getElementById("destinationGrid");
+
+
+                grid.innerHTML = "";
+
+
+                for (
+                    var i = 0;
+                    i < rows * columns;
+                    i++
+                ) {
+
+
+                    var randomIndex =
+                        Math.floor(
+                            Math.random() *
+                            destinations.length
+                        );
+
+
+                    var card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "destination-card";
+
+
+                    card.innerHTML =
+                        destinations[randomIndex];
+
+
+                    grid.appendChild(card);
+
+                }
+
+            });
+
+
+
+        /* =====================================================
+           4. CURRENCY CONVERTER
+
+           Conversion factors adapted from the
+           experiment's currency-conversion concept.
+
+           INR -> USD = 0.015
+           USD -> INR = 67.12
+
+           DOM concepts:
+           selectedIndex
+           value
+           getElementById()
+           innerHTML
+           ===================================================== */
+
+
+        document
+            .getElementById("currencyButton")
+            .addEventListener("click", function () {
+
+
+                var amount =
+                    parseFloat(
+                        document
+                        .getElementById(
+                            "currencyAmount"
+                        )
+                        .value
+                    );
+
+
+                var from =
+                    document
+                    .getElementById(
+                        "currencyFrom"
+                    )
+                    .value;
+
+
+                var to =
+                    document
+                    .getElementById(
+                        "currencyTo"
+                    )
+                    .value;
+
+
+                if (isNaN(amount)) {
+
+                    document
+                        .getElementById(
+                            "currencyResult"
+                        )
+                        .innerHTML =
+                        "Please enter a valid amount.";
+
+                    return;
+                }
+
+
+                var result;
+
+
+                if (
+                    from === "INR" &&
+                    to === "USD"
+                ) {
+
+                    result =
+                        amount * 0.015;
+
+                }
+
+                else if (
+                    from === "USD" &&
+                    to === "INR"
+                ) {
+
+                    result =
+                        amount * 67.12;
+
+                }
+
+                else {
+
+                    result =
+                        amount;
+
+                }
+
+
+                document
+                    .getElementById(
+                        "currencyResult"
+                    )
+                    .innerHTML =
+                    amount +
+                    " " +
+                    from +
+                    " = <b>" +
+                    result.toFixed(2) +
+                    " " +
+                    to +
+                    "</b>";
+
+            });
+
+
+
+        /* =====================================================
+           5. RANDOM DESTINATION
+
+           Original experiment concept:
+           Randomly change an image and maintain
+           a count.
+
+           WanderTamil adaptation:
+           Randomly choose between Tamil Nadu
+           tourist destinations.
+
+           DOM concepts:
+           addEventListener()
+           querySelector()
+           Math.random()
+           DOM manipulation
+           ===================================================== */
+
+
+        var destinationCount = 0;
+
+
+        document
+            .getElementById("randomButton")
+            .addEventListener("click", function () {
+
+
+                var destinations = [
+
+                    "OOTY",
+
+                    "KODAIKANAL",
+
+                    "MADURAI",
+
+                    "RAMESWARAM",
+
+                    "THANJAVUR",
+
+                    "KANYAKUMARI",
+
+                    "MAHABALIPURAM",
+
+                    "YERCAUD"
+
+                ];
+
+
+                var randomIndex =
+                    Math.floor(
+                        Math.random() *
+                        destinations.length
+                    );
+
+
+                var selected =
+                    destinations[randomIndex];
+
+
+                destinationCount++;
+
+
+                document
+                    .getElementById(
+                        "destinationImage"
+                    )
+                    .innerHTML =
+                    selected;
+
+
+                document
+                    .getElementById(
+                        "flipResult"
+                    )
+                    .innerHTML =
+                    "Trip " +
+                    destinationCount +
+                    ": Your WanderTamil destination is <b>" +
+                    selected +
+                    "</b>!";
+
+            });
+
+
+
+        /* =====================================================
+           6. TOUR PACKAGE ORDER
+
+           Package prices:
+           Local Trip     = ₹1,000
+           Standard Trip  = ₹2,500
+           Premium Trip   = ₹4,000
+
+           Guide charges:
+           Basic     = 10%
+           Standard  = 15%
+           Premium   = 20%
+
+           DOM concepts:
+           querySelector()
+           checked
+           value
+           addEventListener()
+           innerHTML
+           ===================================================== */
+
+
+        document
+            .getElementById("packageButton")
+            .addEventListener("click", function () {
+
+
+                var small =
+                    parseInt(
+                        document
+                        .getElementById(
+                            "smallTrips"
+                        )
+                        .value
+                    ) || 0;
+
+
+                var medium =
+                    parseInt(
+                        document
+                        .getElementById(
+                            "mediumTrips"
+                        )
+                        .value
+                    ) || 0;
+
+
+                var large =
+                    parseInt(
+                        document
+                        .getElementById(
+                            "largeTrips"
+                        )
+                        .value
+                    ) || 0;
+
+
+                var basicPrice =
+                    1000;
+
+
+                var standardPrice =
+                    2500;
+
+
+                var premiumPrice =
+                    4000;
+
+
+                var subtotal =
+
+                    (small * basicPrice) +
+
+                    (medium * standardPrice) +
+
+                    (large * premiumPrice);
+
+
+                var guidePercentage =
+                    parseFloat(
+                        document
+                        .querySelector(
+                            'input[name="guide"]:checked'
+                        )
+                        .value
+                    );
+
+
+                var guideCost =
+                    subtotal *
+                    guidePercentage /
+                    100;
+
+
+                var total =
+                    subtotal +
+                    guideCost;
+
+
+                document
+                    .getElementById(
+                        "packagePrice"
+                    )
+                    .innerHTML =
+
+                    "Package Cost: ₹" +
+                    subtotal.toFixed(2) +
+                    "<br>" +
+
+                    "Guide Charge (" +
+                    guidePercentage +
+                    "%): ₹" +
+                    guideCost.toFixed(2) +
+                    "<br><br>" +
+
+                    "Total Tour Cost: ₹" +
+                    total.toFixed(2);
+
+            });
+
+
+    </script>
+
+
+</body>
+
+</html>
