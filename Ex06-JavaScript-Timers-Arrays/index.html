@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>WanderTamil - Local Tourism Guide</title>
+
+
+    <style>
+
+        /* =====================================================
+           GENERAL STYLING
+           ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f8f7;
+
+            color: #333;
+
+            transition: background-color 1s ease;
+        }
+
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        header {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #176b87,
+                    #64ccc5
+                );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 42px;
+        }
+
+
+        header p {
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+           ===================================================== */
+
+        nav {
+
+            background-color: #0e4f65;
+
+            padding: 15px;
+
+            text-align: center;
+        }
+
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin: 0 15px;
+
+            font-weight: bold;
+        }
+
+
+        nav a:hover {
+
+            color: #ffd966;
+        }
+
+
+        /* =====================================================
+           SECTIONS
+           ===================================================== */
+
+        section {
+
+            width: 85%;
+
+            margin: 30px auto;
+
+            padding: 25px;
+
+            background-color: white;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 10px rgba(0,0,0,0.1);
+        }
+
+
+        h2 {
+
+            color: #176b87;
+
+            border-bottom:
+                2px solid #64ccc5;
+
+            padding-bottom: 8px;
+        }
+
+
+        /* =====================================================
+           BUTTON
+           ===================================================== */
+
+        button {
+
+            padding: 12px 22px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background-color: #176b87;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            margin: 8px;
+        }
+
+
+        button:hover {
+
+            background-color: #0e4f65;
+        }
+
+
+        /* =====================================================
+           1. DIGITAL CLOCK
+           ===================================================== */
+
+        #clock {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            color: #176b87;
+
+            padding: 25px;
+
+            background-color: #e9f7f5;
+
+            border-radius: 15px;
+
+            letter-spacing: 3px;
+        }
+
+
+        #dateDisplay {
+
+            text-align: center;
+
+            font-size: 18px;
+
+            margin-top: 10px;
+
+            color: #555;
+        }
+
+
+        /* =====================================================
+           2. DYNAMIC BACKGROUND
+           ===================================================== */
+
+        #backgroundMessage {
+
+            text-align: center;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            background-color: #d9f3f0;
+
+            color: #176b87;
+        }
+
+
+        /* =====================================================
+           3. FONT SIZE EVENT
+           ===================================================== */
+
+        #tourismParagraph {
+
+            font-size: 20px;
+
+            padding: 25px;
+
+            background-color: #f1f8f7;
+
+            border-radius: 10px;
+
+            transition:
+                font-size 0.3s ease;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           4. MOVING TOUR BUS
+           ===================================================== */
+
+        #travelArea {
+
+            width: 100%;
+
+            height: 180px;
+
+            border: 3px solid #176b87;
+
+            border-radius: 15px;
+
+            background-color: #e9f7f5;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        #tourBus {
+
+            position: relative;
+
+            left: 0px;
+
+            top: 45px;
+
+            width: 170px;
+
+            height: 80px;
+
+            background-color: #176b87;
+
+            border-radius: 15px 15px 8px 8px;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+
+
+        /* Bus windows */
+
+        #tourBus::before {
+
+            content: "WANDERTAMIL";
+
+            position: absolute;
+
+            top: 12px;
+
+            left: 15px;
+
+            right: 15px;
+
+            height: 25px;
+
+            background-color: #64ccc5;
+
+            color: #0e4f65;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 11px;
+
+            border-radius: 5px;
+        }
+
+
+        /* Bus wheels */
+
+        #tourBus::after {
+
+            content: "●     ●";
+
+            position: absolute;
+
+            bottom: -17px;
+
+            left: 35px;
+
+            width: 100px;
+
+            color: #222;
+
+            font-size: 25px;
+
+            letter-spacing: 25px;
+        }
+
+
+        /* =====================================================
+           5. ARRAY OF TOURIST DESTINATION OBJECTS
+           ===================================================== */
+
+        #destinationList {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(230px, 1fr)
+                );
+
+            gap: 18px;
+
+            margin-top: 20px;
+        }
+
+
+        .destination-card {
+
+            padding: 20px;
+
+            background-color: #e9f7f5;
+
+            border-left:
+                5px solid #176b87;
+
+            border-radius: 10px;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        .destination-card:hover {
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        .destination-card h3 {
+
+            color: #176b87;
+
+            margin-top: 0;
+        }
+
+
+        .destination-card p {
+
+            margin: 7px 0;
+        }
+
+
+        /* =====================================================
+           6. WANDERTAMIL TOUR GUIDE CLASS
+           ===================================================== */
+
+        #guideResult {
+
+            padding: 20px;
+
+            background-color: #d9f3f0;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+
+            background-color: #176b87;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 40px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <h1>WanderTamil</h1>
+
+        <p>
+            Your Local Tourism Guide to Tamil Nadu
+        </p>
+
+        <p>
+            Explore • Discover • Experience
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <nav>
+
+        <a href="#clockSection">
+            Digital Clock
+        </a>
+
+        <a href="#backgroundSection">
+            Dynamic Background
+        </a>
+
+        <a href="#fontSection">
+            Font Event
+        </a>
+
+        <a href="#busSection">
+            Tour Bus
+        </a>
+
+        <a href="#destinationsSection">
+            Destinations
+        </a>
+
+        <a href="#guideSection">
+            Guide
+        </a>
+
+    </nav>
+
+
+    <!-- =====================================================
+         1. DIGITAL CLOCK
+         ===================================================== -->
+
+    <section id="clockSection">
+
+        <h2>
+            1. WanderTamil Digital Clock
+        </h2>
+
+        <p>
+            This digital clock uses the JavaScript
+            <b>Date</b> object and
+            <b>setInterval()</b> to update the time
+            every one second.
+        </p>
+
+
+        <div id="clock">
+
+            00:00:00
+
+        </div>
+
+
+        <div id="dateDisplay">
+
+            Loading date...
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         2. DYNAMIC BACKGROUND
+         ===================================================== -->
+
+    <section id="backgroundSection">
+
+        <h2>
+            2. Dynamic Tourism Background
+        </h2>
+
+        <p>
+            The background changes automatically at regular
+            intervals using JavaScript timer functions.
+        </p>
+
+
+        <div id="backgroundMessage">
+
+            WanderTamil
+            <br>
+            Discover Tamil Nadu
+
+        </div>
+
+
+        <p id="backgroundStatus">
+
+            Background timer is active.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         3. MOUSEOVER / MOUSEOUT FONT EVENT
+         ===================================================== -->
+
+    <section id="fontSection">
+
+        <h2>
+            3. Tourism Message - Mouse Event
+        </h2>
+
+
+        <p>
+            Move your mouse over the paragraph to increase
+            the font size. Move the mouse away to return
+            it to the original size.
+        </p>
+
+
+        <p id="tourismParagraph"
+           onmouseover="increaseFontSize()"
+           onmouseout="decreaseFontSize()">
+
+            Welcome to WanderTamil!
+            Explore the beauty of Tamil Nadu,
+            from peaceful hill stations and scenic
+            beaches to magnificent temples and
+            historical landmarks.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         4. MOVING TOUR BUS
+         ===================================================== -->
+
+    <section id="busSection">
+
+        <h2>
+            4. WanderTamil Tour Bus Animation
+        </h2>
+
+
+        <p>
+            Click <b>Start Journey</b> to move the
+            WanderTamil tour bus. Click
+            <b>Stop Journey</b> to stop it.
+        </p>
+
+
+        <button id="startButton">
+
+            Start Journey
+
+        </button>
+
+
+        <button id="stopButton">
+
+            Stop Journey
+
+        </button>
+
+
+        <div id="travelArea">
+
+            <div id="tourBus">
+
+                TOUR BUS
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         5. ARRAY OF TOURIST DESTINATION OBJECTS
+         ===================================================== -->
+
+    <section id="destinationsSection">
+
+        <h2>
+            5. WanderTamil Tourist Destinations
+        </h2>
+
+
+        <p>
+            The following destinations are stored as an
+            array of JavaScript objects. Each object contains
+            the destination name, register code and year
+            of establishment.
+        </p>
+
+
+        <div id="destinationList">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         6. JAVASCRIPT CLASS AND OBJECT
+         ===================================================== -->
+
+    <section id="guideSection">
+
+        <h2>
+            6. WanderTamil Tour Guide
+        </h2>
+
+
+        <p>
+            This section demonstrates the use of a
+            JavaScript class and object.
+        </p>
+
+
+        <button id="guideButton">
+
+            Show Guide Details
+
+        </button>
+
+
+        <div id="guideResult">
+
+            Click the button to view the guide details.
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 WanderTamil
+        </p>
+
+        <p>
+            Explore Tamil Nadu • Travel Local •
+            Create Memories
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           1. DIGITAL CLOCK
+
+           Uses:
+           Date()
+           getHours()
+           getMinutes()
+           getSeconds()
+           getDate()
+           getMonth()
+           getFullYear()
+           setInterval()
+
+           Based on Experiment 06 Question 1.
+           ===================================================== */
+
+
+        function displayClock() {
+
+            var d = new Date();
+
+
+            var hours =
+                d.getHours();
+
+            var minutes =
+                d.getMinutes();
+
+            var seconds =
+                d.getSeconds();
+
+
+            /*
+               Add leading zero
+            */
+
+            if (hours < 10) {
+
+                hours = "0" + hours;
+
+            }
+
+
+            if (minutes < 10) {
+
+                minutes = "0" + minutes;
+
+            }
+
+
+            if (seconds < 10) {
+
+                seconds = "0" + seconds;
+
+            }
+
+
+            document
+                .getElementById("clock")
+                .innerHTML =
+
+                hours +
+                ":" +
+                minutes +
+                ":" +
+                seconds;
+
+
+            /*
+               Display date
+            */
+
+            var date =
+                d.getDate();
+
+            var month =
+                d.getMonth() + 1;
+
+            var year =
+                d.getFullYear();
+
+
+            if (date < 10) {
+
+                date = "0" + date;
+
+            }
+
+
+            if (month < 10) {
+
+                month = "0" + month;
+
+            }
+
+
+            document
+                .getElementById("dateDisplay")
+                .innerHTML =
+
+                "Today's Date: " +
+                date +
+                "/" +
+                month +
+                "/" +
+                year;
+
+        }
+
+
+        /*
+           Execute immediately
+        */
+
+        displayClock();
+
+
+        /*
+           Update every second
+        */
+
+        setInterval(
+            displayClock,
+            1000
+        );
+
+
+
+        /* =====================================================
+           2. DYNAMIC BACKGROUND
+
+           Uses:
+           setInterval()
+           Math.random()
+
+           The manual demonstrates changing the page
+           background periodically using randomly
+           generated RGB values.
+           ===================================================== */
+
+
+        function changeTourismBackground() {
+
+            var red =
+                Math.floor(
+                    Math.random() * 256
+                );
+
+
+            var green =
+                Math.floor(
+                    Math.random() * 256
+                );
+
+
+            var blue =
+                Math.floor(
+                    Math.random() * 256
+                );
+
+
+            var color =
+                "rgb(" +
+                red +
+                "," +
+                green +
+                "," +
+                blue +
+                ")";
+
+
+            document.body.style.backgroundColor =
+                color;
+
+
+            document
+                .getElementById(
+                    "backgroundStatus"
+                )
+                .innerHTML =
+
+                "Background changed at: " +
+                new Date().toLocaleTimeString();
+
+        }
+
+
+        /*
+           Change background every 30 seconds.
+        */
+
+        var backgroundTimer =
+            setInterval(
+                changeTourismBackground,
+                30000
+            );
+
+
+
+        /* =====================================================
+           3. FONT SIZE EVENT
+
+           Uses:
+           onmouseover
+           onmouseout
+           DOM style manipulation
+
+           Based on Experiment 06 Question 3.
+           ===================================================== */
+
+
+        function increaseFontSize() {
+
+            document
+                .getElementById(
+                    "tourismParagraph"
+                )
+                .style.fontSize = "28px";
+
+        }
+
+
+        function decreaseFontSize() {
+
+            document
+                .getElementById(
+                    "tourismParagraph"
+                )
+                .style.fontSize = "20px";
+
+        }
+
+
+
+        /* =====================================================
+           4. MOVING TOUR BUS
+
+           Uses:
+           setTimeout()
+           clearTimeout()
+           style.left
+           parseInt()
+
+           Based on Experiment 06 Question 4.
+           ===================================================== */
+
+
+        var bus =
+            document.getElementById(
+                "tourBus"
+            );
+
+
+        var animation;
+
+
+        var busPosition = 0;
+
+
+        function initBus() {
+
+            bus.style.position =
+                "relative";
+
+            bus.style.left =
+                "0px";
+
+        }
+
+
+        function moveBus() {
+
+            busPosition =
+                busPosition + 2;
+
+
+            /*
+               Reset bus when it reaches
+               the right side.
+            */
+
+            if (
+                busPosition >
+                document.getElementById(
+                    "travelArea"
+                ).offsetWidth
+                - 180
+            ) {
+
+                busPosition = 0;
+
+            }
+
+
+            bus.style.left =
+                busPosition + "px";
+
+
+            /*
+               Continue animation
+            */
+
+            animation =
+                setTimeout(
+                    moveBus,
+                    20
+                );
+
+        }
+
+
+        function stopBus() {
+
+            clearTimeout(animation);
+
+        }
+
+
+        /*
+           Initialize bus
+        */
+
+        window.onload =
+            initBus;
+
+
+        /*
+           Start button
+        */
+
+        document
+            .getElementById(
+                "startButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    clearTimeout(
+                        animation
+                    );
+
+                    moveBus();
+
+                }
+            );
+
+
+        /*
+           Stop button
+        */
+
+        document
+            .getElementById(
+                "stopButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    stopBus();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           5. ARRAY OF TOURIST DESTINATION OBJECTS
+
+           Uses:
+           Array
+           Objects
+           forEach()
+           if / else
+           DOM manipulation
+
+           Adapted from Experiment 06 Question 5.
+           ===================================================== */
+
+
+        var destinations = [
+
+            {
+                name: "Ooty",
+                code: "WT-OOTY",
+                year: 1822
+            },
+
+            {
+                name: "Kodaikanal",
+                code: "WT-KODAI",
+                year: 1845
+            },
+
+            {
+                name: "Madurai",
+                code: "WT-MAD",
+                year: 300
+            },
+
+            {
+                name: "Thanjavur",
+                code: "WT-THAN",
+                year: 1000
+            },
+
+            {
+                name: "Rameswaram",
+                code: "WT-RAM",
+                year: 1200
+            },
+
+            {
+                name: "Mahabalipuram",
+                code: "WT-MAM",
+                year: 700
+            },
+
+            {
+                name: "Kanyakumari",
+                code: "WT-KANY",
+                year: 1500
+            },
+
+            {
+                name: "Yercaud",
+                code: "WT-YERC",
+                year: 1840
+            }
+
+        ];
+
+
+        var destinationList =
+            document.getElementById(
+                "destinationList"
+            );
+
+
+        destinations.forEach(
+            function(destination) {
+
+
+                var card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "destination-card";
+
+
+                var category;
+
+
+                /*
+                   Categorize destinations
+                   based on year.
+                */
+
+                if (
+                    destination.year < 2000
+                ) {
+
+                    category =
+                        "Historical / Heritage Destination";
+
+                }
+
+                else {
+
+                    category =
+                        "Modern Tourism Destination";
+
+                }
+
+
+                card.innerHTML =
+
+                    "<h3>" +
+                    destination.name +
+                    "</h3>" +
+
+                    "<p><b>WanderTamil Code:</b> " +
+                    destination.code +
+                    "</p>" +
+
+                    "<p><b>Year:</b> " +
+                    destination.year +
+                    "</p>" +
+
+                    "<p><b>Category:</b> " +
+                    category +
+                    "</p>";
+
+
+                destinationList
+                    .appendChild(card);
+
+            }
+        );
+
+
+
+        /* =====================================================
+           6. CLASS AND OBJECT
+
+           Uses:
+           class
+           constructor()
+           object
+           method
+
+           Based on the Class and Object section
+           of Experiment 06.
+           ===================================================== */
+
+
+        class TourGuide {
+
+            constructor(
+                name,
+                location,
+                experience
+            ) {
+
+                this.name =
+                    name;
+
+                this.location =
+                    location;
+
+                this.experience =
+                    experience;
+
+            }
+
+
+            present() {
+
+                return (
+
+                    "Guide Name: " +
+                    this.name +
+                    "<br>" +
+
+                    "Location: " +
+                    this.location +
+                    "<br>" +
+
+                    "Experience: " +
+                    this.experience +
+                    " years<br><br>" +
+
+                    "Welcome to WanderTamil! " +
+                    "Your local tourism experience " +
+                    "starts here."
+
+                );
+
+            }
+
+        }
+
+
+        /*
+           Create a TourGuide object
+        */
+
+        var myGuide =
+            new TourGuide(
+                "Arun",
+                "Tamil Nadu",
+                5
+            );
+
+
+        /*
+           Display guide when button is clicked
+        */
+
+        document
+            .getElementById(
+                "guideButton"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    document
+                        .getElementById(
+                            "guideResult"
+                        )
+                        .innerHTML =
+                        myGuide.present();
+
+                }
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>
