@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WanderTamil | Local Tourism Guide</title>
+<style>
+:root{--navy:#123047;--teal:#087e83;--gold:#f2b84b;--cream:#fffaf0}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:#20313b;background:var(--cream);line-height:1.6}
+header{color:white;text-align:center;padding:75px 20px;background-image:linear-gradient(110deg,rgba(10,35,50,.88),rgba(8,126,131,.45)),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85');background-position:center,center;background-repeat:no-repeat,no-repeat;background-size:cover,cover}
+nav{background:var(--navy);padding:13px;text-align:center;position:sticky;top:0;z-index:2}
+nav a{color:white;text-decoration:none;margin:0 12px;font-weight:bold}
+nav a:hover{color:var(--gold)}
+h1{font-size:clamp(2.2rem,6vw,4rem);margin:8px}
+h2{color:var(--teal)}
+.tagline{font-size:1.15rem;max-width:650px;margin:12px auto 24px}
+.button{display:inline-block;background:var(--gold);color:#24323a;padding:11px 22px;border:0;border-radius:30px;text-decoration:none;font-weight:bold;cursor:pointer}
+main{max-width:1050px;margin:auto;padding:25px 18px}
+section{margin:28px 0;padding:26px;background:white;box-shadow:0 7px 22px #18384b12}
+.intro{border:2px solid #b5d9d5;border-radius:18px 42px 18px 42px}
+.place-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.place{padding:16px;background:#f0f8f6;border-radius:14px}
+.place img{width:100%;height:135px;object-fit:cover;border-radius:9px}
+/* 2. Border image: SVG image sliced and repeated around this box. */
+.highlight{margin-top:18px;padding:18px;border:18px solid transparent;border-image-source:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cpath d='M0 0H90V90H0Z' fill='none' stroke='%23087e83' stroke-width='16'/%3E%3Cpath d='M0 0L90 90M90 0L0 90' stroke='%23f2b84b' stroke-width='5'/%3E%3C/svg%3E");border-image-slice:28;border-image-repeat:round}
+.form-grid{display:grid;gap:12px;max-width:520px}
+input,select,textarea{width:100%;padding:11px;border:2px solid #b9c8ce;border-radius:8px;font:inherit}
+/* 5. Input pseudo-classes */
+input:focus,select:focus,textarea:focus{outline:none;border:2px solid #e06b36;background:#fff8ed}
+input:required:valid{border-color:#16845b;background:#f1fff7}
+input:required:invalid{border-color:#c54c4c;background:#fff5f5}
+/* 6. Adjacent sibling (+): hover/focus on name reveals the next image. */
+.itemName{display:inline-block;color:var(--teal);font-weight:bold;cursor:pointer;padding:5px 0}
+.itemImg{display:block;width:170px;height:100px;object-fit:cover;opacity:.2;transition:opacity .35s;border-radius:8px}
+.itemName:hover+.itemImg,.itemName:focus+.itemImg{opacity:1}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #c8d5d8;padding:11px;text-align:left}
+th{background:var(--navy);color:white}
+/* 7. nth-child zebra striping and row hover */
+tbody tr:nth-child(odd){background:#f0f0f0}
+tbody tr:nth-child(even){background:#dceefa}
+tbody tr:hover{background:#ffe19a}
+footer{background:var(--navy);color:white;text-align:center;padding:22px}
+@media(max-width:600px){nav a{display:inline-block;margin:5px 8px}section{padding:19px}}
+</style>
+</head>
+<body>
+<header id="home">
+<h1>WanderTamil</h1>
+<p class="tagline">A local tourism guide to the hills, heritage, beaches and flavours of Tamil Nadu.</p>
+<a class="button" href="#places">Explore destinations</a>
+</header>
+<nav aria-label="Main navigation">
+<a href="#home">Home</a><a href="#about">About</a><a href="#places">Places</a><a href="#best-time">Best time</a><a href="#contact">Contact</a>
+</nav>
+<main>
+<section id="about" class="intro">
+<h2>Welcome to Tamil Nadu</h2>
+<p>Plan a memorable local trip through misty hill stations, ancient temple towns and scenic coastal destinations. This webpage demonstrates the seven Advanced CSS3 concepts in the lab manual.</p>
+<div class="highlight"><strong>Travel note:</strong> Check local weather, transport timings and attraction opening hours before your journey.</div>
+</section>
+<section id="places">
+<h2>Explore Tamil Nadu — 12 destinations</h2>
+<p>From lively cities and ancient monuments to hill stations, waterfalls and peaceful beaches, choose a destination for your next trip.</p>
+<div class="place-grid">
+<article class="place"><h3>Ooty</h3><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Green mountain landscape"><p>Enjoy cool weather, tea gardens, the Nilgiri Mountain Railway and scenic viewpoints.</p><p><strong>Best for:</strong> Hills · Nature · Families</p></article>
+<article class="place"><h3>Kodaikanal</h3><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=80" alt="Lake and mountain scenery"><p>Discover Kodaikanal Lake, Coaker's Walk, pine forests and misty viewpoints.</p><p><strong>Best for:</strong> Lakes · Trekking · Relaxation</p></article>
+<article class="place"><h3>Madurai</h3><img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=700&q=80" alt="Historic temple architecture"><p>Explore Meenakshi Amman Temple, heritage streets and famous local cuisine.</p><p><strong>Best for:</strong> Heritage · Temples · Food</p></article>
+<article class="place"><h3>Chennai</h3><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=700&q=80" alt="Coastal beach view"><p>Visit Marina Beach, museums, historic neighbourhoods and cultural venues.</p><p><strong>Best for:</strong> City life · Beaches · Culture</p></article>
+<article class="place"><h3>Mahabalipuram</h3><img src="https://images.unsplash.com/photo-1600100397608-f010a9a4b6f6?auto=format&fit=crop&w=700&q=80" alt="Ancient stone monument"><p>See the Shore Temple, Pancha Rathas and remarkable Pallava rock-cut monuments.</p><p><strong>Best for:</strong> UNESCO heritage · Architecture</p></article>
+<article class="place"><h3>Thanjavur</h3><img src="https://images.unsplash.com/photo-1606293926075-69a00dbhi9b3?auto=format&fit=crop&w=700&q=80" alt="South Indian temple architecture"><p>Discover the Brihadeeswarar Temple, art, bronze work and Chola history.</p><p><strong>Best for:</strong> History · Temples · Art</p></article>
+<article class="place"><h3>Rameswaram</h3><img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=700&q=80" alt="Ocean and coastline"><p>Experience Ramanathaswamy Temple, Pamban Bridge and coastal scenery.</p><p><strong>Best for:</strong> Pilgrimage · Sea views</p></article>
+<article class="place"><h3>Kanyakumari</h3><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="Seaside landscape"><p>Watch the sunrise, visit the Vivekananda Rock Memorial and enjoy the coast.</p><p><strong>Best for:</strong> Coastal views · Sightseeing</p></article>
+<article class="place"><h3>Yercaud</h3><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80" alt="Green forest and hills"><p>Take in the Eastern Ghats, Yercaud Lake, coffee plantations and forest roads.</p><p><strong>Best for:</strong> Quiet hill getaway · Nature</p></article>
+<article class="place"><h3>Valparai</h3><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=700&q=80" alt="Lush green forest"><p>Travel through tea estates, rainforest landscapes and scenic mountain routes.</p><p><strong>Best for:</strong> Tea estates · Wildlife · Drives</p></article>
+<article class="place"><h3>Hogenakkal</h3><img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=700&q=80" alt="Waterfall flowing over rocks"><p>See the dramatic Cauvery River waterfalls and rocky river scenery.</p><p><strong>Best for:</strong> Waterfalls · Day trips</p></article>
+<article class="place"><h3>Tiruchirappalli</h3><img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=80" alt="Historic Indian temple"><p>Visit Rockfort Temple, Srirangam and important heritage landmarks.</p><p><strong>Best for:</strong> Heritage · Temples · City break</p></article>
+</div>
+</section>
+<section>
+<h2>Hover to reveal a destination</h2>
+<p>Move your pointer over a place name. Its adjacent image becomes clear.</p>
+<span class="itemName" tabindex="0">Kanyakumari — hover or focus here</span>
+<img class="itemImg" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Seaside view">
+</section>
+<section id="best-time">
+<h2>Best time to visit</h2>
+<table><thead><tr><th>Destination</th><th>Suggested season</th><th>Experience</th></tr></thead>
+<tbody>
+<tr><td>Ooty</td><td>March–June</td><td>Hills and tea gardens</td></tr>
+<tr><td>Kodaikanal</td><td>April–June</td><td>Lake and nature walks</td></tr>
+<tr><td>Madurai</td><td>October–March</td><td>Heritage and temples</td></tr>
+<tr><td>Chennai</td><td>November–February</td><td>City and coastal sightseeing</td></tr>
+<tr><td>Mahabalipuram</td><td>November–February</td><td>Monuments and shore</td></tr>
+<tr><td>Thanjavur</td><td>November–February</td><td>Temple and heritage visits</td></tr>
+<tr><td>Rameswaram</td><td>October–April</td><td>Temple and coastal visits</td></tr>
+<tr><td>Kanyakumari</td><td>October–March</td><td>Coastal views</td></tr>
+<tr><td>Yercaud</td><td>October–June</td><td>Hills and coffee estates</td></tr>
+<tr><td>Valparai</td><td>September–March</td><td>Tea estates and nature</td></tr>
+<tr><td>Hogenakkal</td><td>October–March</td><td>Waterfall scenery</td></tr>
+<tr><td>Tiruchirappalli</td><td>November–February</td><td>Heritage and temples</td></tr>
+</tbody></table>
+</section>
+<section id="contact">
+<h2>Plan your visit</h2>
+<p>Required fields demonstrate the :required, :valid and :invalid selectors.</p>
+<form class="form-grid" action="#" method="get">
+<label>Your name<input type="text" name="name" placeholder="Enter your name" required></label>
+<label>Email address<input type="email" name="email" placeholder="you@example.com" required></label>
+<label>Destination<select name="destination"><option>Ooty</option><option>Kodaikanal</option><option>Madurai</option><option>Kanyakumari</option></select></label>
+<label>Message<textarea name="message" rows="3" placeholder="Tell us about your trip"></textarea></label>
+<button class="button" type="submit">Submit enquiry</button>
+</form>
+</section>
+</main>
+<footer><p>© 2026 WanderTamil | Local Tourism Guide | Explore • Experience • Enjoy</p></footer>
+</body>
+</html>
