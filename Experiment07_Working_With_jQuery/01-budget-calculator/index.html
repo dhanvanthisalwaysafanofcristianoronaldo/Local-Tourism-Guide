@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Calculator App</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Load jQuery first, because script.js uses the jQuery library. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar"><h1>Budget Calculator App</h1></header>
+
+    <section class="panel">
+      <label for="amount">Enter Amount that you want to Manage</label>
+      <input id="amount" type="number" min="0" step="any" value="15000">
+
+      <h2>How would you like to divide your money?</h2>
+      <div class="percent-grid">
+        <label>Room Rent (%)<input id="roomPercent" type="number" min="0" max="100" value="50"></label>
+        <label>Accessories (%)<input id="accessoriesPercent" type="number" min="0" max="100" value="20"></label>
+        <label>Emergency (%)<input id="emergencyPercent" type="number" min="0" max="100" value="20"></label>
+        <label>Savings (%)<input id="savingsPercent" type="number" min="0" max="100" value="10"></label>
+      </div>
+
+      <button id="evaluateButton" type="button">Evaluate My Money</button>
+      <p id="message" class="message" role="alert" aria-live="polite"></p>
+
+      <!-- Each result box is updated by jQuery after the button is clicked. -->
+      <div class="results">
+        <div class="result room"><span>Room Rent</span><strong id="roomResult">Rs.0.00</strong></div>
+        <div class="result accessories"><span>Accessories</span><strong id="accessoriesResult">Rs.0.00</strong></div>
+        <div class="result emergency"><span>Emergency</span><strong id="emergencyResult">Rs.0.00</strong></div>
+        <div class="result savings"><span>Saving</span><strong id="savingsResult">Rs.0.00</strong></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

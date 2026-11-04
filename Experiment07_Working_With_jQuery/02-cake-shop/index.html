@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Shop - Order Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="shop">
+    <header class="shop-header"><h1>CAKE SHOP</h1></header>
+
+    <!-- Product names and prices follow the cake-shop reference in the manual. -->
+    <section class="products">
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80" alt="Colourful celebration cake">
+        <h2>Color Cake</h2><p>Rs. 300</p>
+      </article>
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1602353856108-d6a3d4d4c1b3?auto=format&fit=crop&w=500&q=80" alt="Chocolate brown cake">
+        <h2>Brown Cake</h2><p>Rs. 200</p>
+      </article>
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=500&q=80" alt="Milky cream cake">
+        <h2>Milky Cake</h2><p>Rs. 250</p>
+      </article>
+      <article class="product">
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80" alt="Black forest chocolate cake">
+        <h2>Black Forest Cake</h2><p>Rs. 500</p>
+      </article>
+    </section>
+
+    <section class="order">
+      <h2>Order Cake</h2>
+      <label for="colorQty">Color Cake (Quantity)</label>
+      <input type="number" id="colorQty" min="0" step="1" value="2">
+
+      <label for="brownQty">Brown Cake (Quantity)</label>
+      <input type="number" id="brownQty" min="0" step="1" value="1">
+
+      <label for="milkyQty">Milky Cake (Quantity)</label>
+      <input type="number" id="milkyQty" min="0" step="1" value="2">
+
+      <label for="blackForestQty">Black Forest Cake (Quantity)</label>
+      <input type="number" id="blackForestQty" min="0" step="1" value="1">
+
+      <button id="placeOrder" type="button">Place Order</button>
+      <p id="message" class="message" role="alert" aria-live="polite"></p>
+    </section>
+
+    <section class="bill" aria-live="polite">
+      <h2>Purchase Order Bill!!!</h2>
+      <div class="total-line"><span>Total Price</span><strong id="totalPrice">Rs.0</strong></div>
+      <div id="billDetails" class="bill-details">Your item-wise bill will appear here.</div>
+    </section>
+  </main>
+</body>
+</html>

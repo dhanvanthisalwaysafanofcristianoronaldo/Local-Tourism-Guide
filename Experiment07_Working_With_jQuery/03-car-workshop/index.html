@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Body Workshop - jQuery</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="workshop">
+    <h1>Car Workshop</h1>
+    <p>Use the jQuery buttons to customize the car body, glass and tyres.</p>
+
+    <!-- The car is drawn with simple HTML elements so jQuery can change
+         their CSS properties directly, as requested in the lab exercise. -->
+    <section class="car-stage" aria-label="Car preview">
+      <div id="car" class="car">
+        <div class="roof"></div>
+        <div id="glass" class="glass"></div>
+        <div id="body" class="body-panel"></div>
+        <div id="frontWheel" class="wheel"></div>
+        <div id="rearWheel" class="wheel"></div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button id="changeCarColor" type="button">Change Car Color</button>
+      <button id="changeGlassColor" type="button">Change Glass Color</button>
+      <button id="changeTyreSize" type="button">Try Different Tyre Size</button>
+      <button id="changeTyreColor" type="button">Try Different Tyre Color</button>
+      <button id="resetCar" class="reset" type="button">Reset</button>
+    </section>
+
+    <p id="status" class="status" aria-live="polite">Your car is ready for customization.</p>
+  </main>
+</body>
+</html>
