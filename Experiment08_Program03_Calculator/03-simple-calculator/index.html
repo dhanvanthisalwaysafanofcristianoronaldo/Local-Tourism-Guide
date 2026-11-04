@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" ng-app="calculatorApp">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngularJS | Simple Calculator</title><link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script><script src="app.js"></script></head>
+<body><header class="topbar"><div class="brand">✦ ANGULAR LAB</div><span class="tag">EXPERIMENT 08 · 03</span></header>
+<main ng-controller="CalculatorController">
+<section class="hero"><div class="eyebrow">Program 03 · Two-way data binding</div><h1>Numbers in.<br>Answers out.</h1><p class="subtitle">A simple four-operation calculator powered by AngularJS models and controller logic.</p></section>
+<section class="panel"><h2>Quick calculator</h2><p class="muted">Enter two values and choose an arithmetic operation.</p>
+<div class="grid" style="margin-top:22px">
+<div><label for="numberA">First number</label><input id="numberA" type="number" ng-model="a" ng-change="calculate()" placeholder="e.g. 24"></div>
+<div><label for="numberB">Second number</label><input id="numberB" type="number" ng-model="b" ng-change="calculate()" placeholder="e.g. 6"></div>
+</div>
+<div style="margin-top:16px"><label for="operator">Operation</label><select id="operator" ng-model="operator" ng-options="op.value as op.label for op in operators" ng-change="calculate()"></select></div>
+<div class="result"><span class="muted">Calculated result</span><strong>{{ result }}</strong><span class="muted" style="font-size:.82rem">{{ explanation }}</span></div>
+<div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="secondary" type="button" ng-click="reset()">Reset calculator ↺</button></div>
+</section></main><footer class="footer">AngularJS directives: ng-model · ng-options · ng-change · interpolation</footer></body></html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" ng-app="helloApp">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AngularJS | Hello World</title><link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="brand">✦ ANGULAR LAB</div><span class="tag">EXPERIMENT 08 · 01</span></header>
+  <main ng-controller="HelloWorldCtrl">
+    <section class="hero"><div class="eyebrow">Program 01 · First AngularJS app</div><h1>Say hello to<br>data binding.</h1><p class="subtitle">A minimal demonstration of AngularJS MVC using an application module, controller, and the $scope object.</p></section>
+    <section class="panel">
+      <span class="pill">● Application running</span>
+      <h2 style="margin-top:18px">Hello World, AngularJS!</h2>
+      <p class="muted">The message below is supplied by the controller through <code>$scope</code>.</p>
+      <div class="result"><span class="muted">Controller message</span><strong>{{ message }}</strong></div>
+      <div style="margin-top:22px"><label for="name">Try changing the message</label><input id="name" ng-model="message" aria-label="Edit greeting message"></div>
+      <p class="muted" style="font-size:.85rem;margin-bottom:0">Edit the input to see two-way data binding update the view instantly.</p>
+    </section>
+  </main><footer class="footer">Built with AngularJS 1.6.9 · Model–View–Controller</footer>
+</body></html>

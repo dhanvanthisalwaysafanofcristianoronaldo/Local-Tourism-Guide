@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" ng-app="todoApp">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngularJS | To-Do List</title><link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script><script src="app.js"></script></head>
+<body><header class="topbar"><div class="brand">✦ ANGULAR LAB</div><span class="tag">EXPERIMENT 08 · 04</span></header>
+<main ng-controller="TodoController">
+<section class="hero"><div class="eyebrow">Program 04 · Dynamic lists</div><h1>Make space<br>for what matters.</h1><p class="subtitle">Capture tasks, mark them complete, and keep your day organised with a live AngularJS list.</p></section>
+<section class="panel"><div class="row" style="align-items:center"><div><h2>My tasks</h2><p class="muted" style="margin:5px 0 0">Small steps make big progress.</p></div><span class="pill">{{ remainingCount() }} left</span></div>
+<form ng-submit="addTask()" class="row" style="margin-top:22px"><div><label for="taskTitle">New task</label><input id="taskTitle" ng-model="title" placeholder="What do you need to do?" maxlength="100" required></div><button class="primary" type="submit">＋ Add task</button></form>
+<div class="row filters" style="margin-top:20px;align-items:center"><button class="secondary" type="button" ng-click="filter='all'">All</button><button class="secondary" type="button" ng-click="filter='active'">Active</button><button class="secondary" type="button" ng-click="filter='done'">Completed</button></div>
+<div class="task-list">
+<p class="muted" ng-if="filteredTasks().length === 0">Nothing here yet. Add your first task above.</p>
+<div class="task" ng-repeat="task in filteredTasks() track by task.id">
+<label class="task-label"><input type="checkbox" ng-model="task.done"><span ng-class="{completed: task.done}">{{ task.title }}</span></label>
+<button class="danger" type="button" ng-click="removeTask(task.id)">Remove</button>
+</div></div>
+<div class="row summary" style="align-items:center"><span class="muted">{{ completedCount() }} of {{ tasks.length }} completed</span><button class="secondary" type="button" ng-click="clearCompleted()" ng-disabled="completedCount() === 0">Clear completed</button></div>
+</section></main><footer class="footer">AngularJS directives: ng-model · ng-submit · ng-click · ng-repeat · ng-class</footer></body></html>

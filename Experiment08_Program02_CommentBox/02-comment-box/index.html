@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app="commentApp">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngularJS | Comment Box</title><link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script><script src="app.js"></script></head>
+<body><header class="topbar"><div class="brand">✦ ANGULAR LAB</div><span class="tag">EXPERIMENT 08 · 02</span></header>
+<main ng-controller="CommentCtrl">
+<section class="hero"><div class="eyebrow">Program 02 · Controller + directives</div><h1>A little space<br>for your thoughts.</h1><p class="subtitle">Post comments, view them instantly, and remove a comment when you no longer need it.</p></section>
+<section class="panel">
+<h2>Post your comment</h2><p class="muted">Your comments are displayed below in real time.</p>
+<form ng-submit="addComment()" novalidate>
+<label for="comment">Your comment</label><textarea id="comment" rows="3" ng-model="newComment" maxlength="240" placeholder="Write something thoughtful..." required></textarea>
+<div class="row" style="align-items:center;margin-top:12px"><span class="muted" style="font-size:.8rem">{{ (newComment || '').length }}/240 characters</span><button class="primary" type="submit">＋ Post comment</button></div>
+</form>
+<div class="result" style="background:#fafaff;margin-top:24px">
+<div class="row" style="align-items:center"><h2 style="margin:0">Comments</h2><span class="pill">{{ comments.length }} posted</span></div>
+<p class="muted" ng-if="comments.length === 0">No comments yet. Be the first to post!</p>
+<article ng-repeat="comment in comments track by comment.id" class="comment">
+<div><div class="comment-title">Community member <span class="muted">· {{ comment.time }}</span></div><p>{{ comment.text }}</p></div>
+<button class="danger" type="button" ng-click="removeComment($index)" aria-label="Delete comment">Delete</button>
+</article>
+</div>
+</section></main><footer class="footer">AngularJS directives: ng-model · ng-submit · ng-repeat · ng-click</footer></body></html>
