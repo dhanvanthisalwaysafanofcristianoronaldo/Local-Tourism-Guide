@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en" ng-app="routeSiteApp">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Color Routes | Experiment 09</title><link rel="stylesheet" href="styles.css"><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script><script src="app.js"></script></head>
+<body><header class="topbar"><div class="shell topbar-inner"><a class="brand" href="#/main">Color<span>Routes</span></a><nav aria-label="Main navigation"><a href="#/main" ng-class="{'active':$location.path()==='/main' || $location.path()==='/'}">Main</a><a href="#/red" ng-class="{'active':$location.path()==='/red'}">Red</a><a href="#/green" ng-class="{'active':$location.path()==='/green'}">Green</a><a href="#/blue" ng-class="{'active':$location.path()==='/blue'}">Blue</a></nav></div></header>
+<main class="shell" ng-view></main><footer class="footer"><div class="shell">A four-view single-page application · AngularJS 1.6.9 + ngRoute</div></footer></body></html>
