@@ -1,0 +1,10 @@
+{
+  "name": "experiment-10-nodejs-mongodb-registration",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Experiment 10: HTML form request handling with Node.js and MongoDB",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "bcryptjs": "^2.4.3", "mongodb": "^6.8.0" }
+}
